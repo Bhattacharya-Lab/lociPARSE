@@ -1,11 +1,10 @@
 name: lociPARSE
 channels:
   - pytorch
-  - esri
-  - dglteam
   - conda-forge
   - defaults
 dependencies:
   - python=3.10.4
   - numpy-base=1.22.3
+  - tqdm=4.64.0
   - pytorch=1.12.0=py3.10_cuda11.6_cudnn8.3.2_0

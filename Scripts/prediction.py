@@ -4,6 +4,7 @@ from torch.utils.data import DataLoader
 from torch import nn
 import os
 import numpy as np
+from tqdm import tqdm
 
 from dataloader import RNADataset
 import model as ipa
@@ -45,7 +46,7 @@ def test(model, loader_test):
 
 	model.eval()
 
-	for (data, RNAid) in loader_test:
+	for batch_idx, (data, RNAid) in tqdm(enumerate(loader_test)):
 		
 		idstr=""
 		
@@ -79,8 +80,8 @@ def test(model, loader_test):
 		
 		lddt = np.array(plist)
 		
-		np.save(pred_path + "/" + idstr + "_pMoL.npy", lddt)
-		np.save(pred_path + "/" + idstr + "_pNuL.npy", pNuL)
+		np.savetxt(pred_path + "/" + idstr + "_pMoL.txt", lddt, fmt='%.2f')
+		np.savetxt(pred_path + "/" + idstr + "_pNuL.txt", pNuL, fmt='%.2f')
 
 if __name__ == "__main__":
 	main()

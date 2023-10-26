@@ -1,2 +1,15 @@
-python3 Feature.py
-python3 prediction.py
+#!/bin/bash
+
+echo "========Running lociPARSE========="
+echo ""
+echo "========Generating Features======="
+
+python3 Scripts/Feature.py
+
+echo "Done"
+
+echo "=========Running Inference========"
+
+python3 Scripts/prediction.py
+echo ""
+echo "=======Inference complete.========"

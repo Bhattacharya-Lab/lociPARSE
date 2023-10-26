@@ -4,6 +4,7 @@ import time
 import numpy as np
 import shutil
 import torch
+from tqdm import tqdm
 
 purines = ['A' , 'G']
 pyrimidines = ['U', 'C']
@@ -616,7 +617,7 @@ def generateFeatures(args):
 
 			idlist.append(idname)
 			
-		for i in range(len(idlist)):
+		for i in tqdm(range(len(idlist))):
 
 			idname = idlist[i]
 
