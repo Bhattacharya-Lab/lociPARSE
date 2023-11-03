@@ -31,7 +31,7 @@ Instructions for running lociPARSE:
 
 3. Run
    ```
-   chmod a+x runQA.sh && ./runQA.sh
+   chmod a+x lociPARSE.sh && ./lociPARSE.sh
    ```
 
 5. The script will generate features for every ID listed in Input/input.txt and store in individual folder inside 'Feature' folder. Then it will run inference and store predicted molecular-level lDDT (pMoL) and predicted nucleotide-wise lDDT (pNuL) in "score.txt" in individual folder inside 'Prediction' folder.
