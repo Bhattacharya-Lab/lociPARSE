@@ -10,7 +10,7 @@ Submitted, 2023.
 ## Datasets
 
 - The lists of IDs used in our training set, test sets and validation set used in ablation study are available under [Datasets](https://github.com/Bhattacharya-Lab/lociPARSE/tree/main/Datasets).
-- Training set and test set of 30 independent RNAs were taken from [trRosettaRNA](https://yanglab.qd.sdu.edu.cn/trRosettaRNA/benchmark/)
+- Training set and test set of 30 independent RNAs were taken from [trRosettaRNA](https://yanglab.qd.sdu.edu.cn/trRosettaRNA/benchmark/).
 - CASP15 experimental strctures and all submiited predictions were downloaded from [CASP15](https://predictioncenter.org/download_area/CASP15/). 
 - 60 non-redundant targets for TS60 validation set were curated from [PDB](https://www.rcsb.org).
 
