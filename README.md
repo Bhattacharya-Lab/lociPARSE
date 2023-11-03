@@ -5,7 +5,7 @@ by Sumit Tarafder and Debswapna Bhattacharya.
 Submitted, 2023.
 
 
-![Workflow](./lociPARSE.png)
+![alt text](https://github.com/Bhattacharya-Lab/lociPARSE/blob/main/lociPARSE.png?raw=true)
 
 ## Installation
 
