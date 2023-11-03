@@ -1,3 +1,7 @@
+"""
+Credit: PIPPack repository (https://github.com/Kuhlman-Lab/PIPPack)
+"""
+
 import math
 import numpy as np
 import torch
@@ -224,6 +228,8 @@ class RNAQA(nn.Module):
                 for _ in range(self.n_layers)
             ])            
         
+        # Addition Sumit Tarafder
+        # For down projecting hidden dimension from 128 to 1 
         self.embedding_out = nn.Linear(self.hidden_nf, out_node_nf)
             
         self.to(self.device)

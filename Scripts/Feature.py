@@ -1,3 +1,7 @@
+"""
+Author: Sumit Tarafder
+"""
+
 import argparse
 import os
 import time    
@@ -461,7 +465,13 @@ def CreateNodeFeat(args,seq,X,idname):
 	
 	torch.save(node_feat, nodefeat_filepath)
 
+
 def rbf(D):
+	
+	"""
+	Credit: PIPPack repository (https://github.com/Kuhlman-Lab/PIPPack)
+	"""
+
 	num_rbf = 16
 	# Distance radial basis function
 	D_min, D_max, D_count = 0., 100., num_rbf
@@ -474,12 +484,22 @@ def rbf(D):
 	return RBF
 
 def gather_edges(edges, neighbor_idx):
-    # Features [B,N,N,C] at Neighbor indices [B,N,K] => Neighbor features [B,N,K,C]
-    neighbors = neighbor_idx.unsqueeze(-1).expand(-1, -1, -1, edges.size(-1))
-    edge_features = torch.gather(edges, 2, neighbors)
-    return edge_features
+
+	"""
+	Credit: PIPPack repository (https://github.com/Kuhlman-Lab/PIPPack)
+	"""
+
+	# Features [B,N,N,C] at Neighbor indices [B,N,K] => Neighbor features [B,N,K,C]
+	neighbors = neighbor_idx.unsqueeze(-1).expand(-1, -1, -1, edges.size(-1))
+	edge_features = torch.gather(edges, 2, neighbors)
+	return edge_features
 
 def get_rbf(A, B, Edges):
+	
+	"""
+	Credit: PIPPack repository (https://github.com/Kuhlman-Lab/PIPPack)
+	"""
+
 	D_A_B = torch.sqrt(torch.sum((A[:,:,None,:] - B[:,None,:,:])**2,-1) + 1e-6) #[B, L, L]
 	
 	D_A_B_neighbors = gather_edges(D_A_B[:,:,:,None], Edges)[:,:,:,0] #[B,L,K]
@@ -588,7 +608,7 @@ def genFeatID(idname, args):
 	#=====================Step-3 =============================
 	# Create graph based on C4' atoms, and Top K neighbors, where K = 20
 	K = args.num_neighbours
-	graphfilename = args.Path + idname + "/Graph.pt"
+	graphfilename = args.Path + idname + "/adj_mat.pt"
 
 	Edges = CreateGraph(X, K, graphfilename)
 	

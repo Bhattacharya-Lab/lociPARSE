@@ -1,3 +1,7 @@
+"""
+Author: Sumit Tarafder
+"""
+
 import torch
 import numpy as np
 
@@ -31,7 +35,7 @@ class RNADataset():
 			node_feature_path = feature_dir + RNAid + "/nodefeat.pt"
 			edge_feature_path = feature_dir + RNAid + "/edgefeat.pt"
 			coordpath = feature_dir + RNAid + "/Coord.npy"
-			graph_path = feature_dir + RNAid + "/Graph.pt"
+			graph_path = feature_dir + RNAid + "/adj_mat.pt"
 			
 			node_feats = torch.load(node_feature_path)
 			L = node_feats.size()[0]

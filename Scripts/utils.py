@@ -1,3 +1,8 @@
+"""
+Credit: PIPPack repository (https://github.com/Kuhlman-Lab/PIPPack)
+"""
+
+
 from typing import Tuple, Optional, Any, Callable, Sequence
 import torch
 import numpy as np
