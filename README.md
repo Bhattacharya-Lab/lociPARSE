@@ -34,4 +34,7 @@ Instructions for running lociPARSE:
    chmod a+x runQA.sh && ./runQA.sh
    ```
 
-5. The script will generate features for every ID listed in Input/input.txt and store in individual folder inside 'Feature' folder. Then it will run inference and store global lDDT prediction per target (pMoL) and per nucleotide prediction (pNuL) in individual folder inside 'Prediction' folder.
+5. The script will generate features for every ID listed in Input/input.txt and store in individual folder inside 'Feature' folder. Then it will run inference and store predicted molecular-level lDDT (pMoL) and predicted nucleotide-wise lDDT (pNuL) in "score.txt" in individual folder inside 'Prediction' folder.
+
+6. First line in the output "score.txt" shows pMol score. Each of the subsequent lines sepcify 2 columns: column 1: nucleotide number and column2: pNuL score.
+
