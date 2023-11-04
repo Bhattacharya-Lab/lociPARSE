@@ -2,8 +2,6 @@
 
 by Sumit Tarafder and Debswapna Bhattacharya.
 
-Submitted, 2023.
-
 Codebase for our <u>loc</u>ality-aware <u>i</u>nvariant <u>P</u>oint <u>A</u>ttention-based <u>R</u>NA <u>S</u>cor<u>E</u>r (lociPARSE).
 
 ![alt text](https://github.com/Bhattacharya-Lab/lociPARSE/blob/main/lociPARSE.png?raw=true)
