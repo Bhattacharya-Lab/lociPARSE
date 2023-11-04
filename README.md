@@ -2,7 +2,7 @@
 
 by Sumit Tarafder and Debswapna Bhattacharya.
 
-Codebase for our <u>loc</u>ality-aware <u>i</u>nvariant <u>P</u>oint <u>A</u>ttention-based <u>R</u>NA <u>S</u>cor<u>E</u>r (lociPARSE).
+Codebase for our <ins>loc</ins>ality-aware <ins>i</ins>nvariant <ins>P</ins>oint <ins>A</ins>ttention-based <ins>R</ins>NA <ins>S</ins>cor<ins>E</ins>r (lociPARSE).
 
 ![alt text](https://github.com/Bhattacharya-Lab/lociPARSE/blob/main/lociPARSE.png?raw=true)
 
