@@ -1,6 +1,8 @@
 ## lociPARSE: a locality-aware invariant point attention model for scoring RNA 3D structures
 
-by Sumit Tarafder and Debswapna Bhattacharya.
+by Sumit Tarafder and Debswapna Bhattacharya
+
+[[bioRxiv](https://www.biorxiv.org/content/10.1101/2023.11.04.565599v1)] [[pdf](https://www.biorxiv.org/content/10.1101/2023.11.04.565599v1.full.pdf)]
 
 Codebase for our <ins>loc</ins>ality-aware <ins>i</ins>nvariant <ins>P</ins>oint <ins>A</ins>ttention-based <ins>R</ins>NA <ins>S</ins>cor<ins>E</ins>r (lociPARSE).
 
