@@ -22,6 +22,8 @@ conda env create -f lociPARSE_environment.yml
 conda activate lociPARSE
 ```
 
+Typical installation time on a "normal" desktop computer ~ 5 - 10 minutes.
+
 ## Usage
 
 Instructions for running lociPARSE:
@@ -38,6 +40,8 @@ Instructions for running lociPARSE:
 5. The script will generate features for every ID listed in Input/input.txt and store in individual folder inside 'Feature' folder. Then it will run inference and store predicted molecular-level lDDT (pMoL) and predicted nucleotide-wise lDDT (pNuL) in "score.txt" in individual folder inside 'Prediction' folder.
 
 6. First line in the output "score.txt" shows pMoL score. Each of the subsequent lines sepcify 2 columns: column-1: nucleotide index in PDB and column-2: pNuL score.
+
+Inference time for a typical RNA structure (~70 nt) should be around 5 - 10 seconds.
 
 ## Datasets
 
