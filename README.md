@@ -26,7 +26,7 @@ conda env create -f lociPARSE_environment.yml
 conda activate lociPARSE
 ```
 
-Typical installation time on a "normal" desktop computer should be around 5 - 10 minutes.
+Typical installation time on a "normal" desktop computer should take a few minutes.
 
 ## Usage
 
@@ -45,7 +45,7 @@ Instructions for running lociPARSE:
 
 6. First line in the output "score.txt" shows pMoL score. Each of the subsequent lines sepcify 2 columns: column-1: nucleotide index in PDB and column-2: pNuL score.
 
-Inference time for a typical RNA structure (~70 nucleotides) should be around 5 - 10 seconds.
+Inference time for a typical RNA structure (~70 nucleotides) should take a few seconds.
 
 ## Datasets
 
