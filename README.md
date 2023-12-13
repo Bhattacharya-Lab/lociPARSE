@@ -6,6 +6,10 @@ by Sumit Tarafder and Debswapna Bhattacharya
 
 Codebase for our <ins>loc</ins>ality-aware <ins>i</ins>nvariant <ins>P</ins>oint <ins>A</ins>ttention-based <ins>R</ins>NA <ins>S</ins>cor<ins>E</ins>r (lociPARSE).
 
+
+<a href="https://zenodo.org/doi/10.5281/zenodo.10369083"><img src="https://zenodo.org/badge/707283184.svg" alt="DOI"></a>
+
+
 ![alt text](https://github.com/Bhattacharya-Lab/lociPARSE/blob/main/lociPARSE.png?raw=true)
 
 ## Installation
