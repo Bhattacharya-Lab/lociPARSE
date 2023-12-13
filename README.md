@@ -26,7 +26,7 @@ conda env create -f lociPARSE_environment.yml
 conda activate lociPARSE
 ```
 
-Typical installation time on a "normal" desktop computer should take a few minutes.
+Typical installation time on a "normal" desktop computer should take a few minutes in a 64-bit Linux system.
 
 ## Usage
 
