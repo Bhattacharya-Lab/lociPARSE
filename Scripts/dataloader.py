@@ -4,6 +4,7 @@ Author: Sumit Tarafder
 
 import torch
 import numpy as np
+from tqdm import tqdm
 
 class RNADataset():
 
@@ -28,7 +29,7 @@ class RNADataset():
 
 				idlistall.append(RNAid)
 			
-		for i in range(len(idlistall)):
+		for i in tqdm(range(len(idlistall))):
 			
 			RNAid = idlistall[i]
 				

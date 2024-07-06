@@ -577,14 +577,19 @@ def genFeatID(idname, args):
 
 	path = args.Path
 
-	fullmodelpath = path + idname + "/Fullmodel.pdb"
+	fullmodelpath = f"{path}/{idname}/Fullmodel.pdb"
+	labelfilename = f"{path}/{idname}/labels.npy"
 
 	#=====================Step-1=============================
 	
 	if not os.path.exists(path + idname):
 		os.makedirs(path + idname)
 
-	shutil.copy(f"Input/{idname}.pdb", fullmodelpath)
+	if args.mode == "predict":
+		shutil.copy(f"Input/RNA_pdbs/{idname}.pdb", fullmodelpath)
+	else:
+		shutil.copy(f"Input/Dataset/Train/{idname}/model.pdb", fullmodelpath)
+		shutil.copy(f"Input/Dataset/Train/{idname}/lddtlabel.npy", labelfilename)
 	
 	renumber(path, idname, fullmodelpath)
 
@@ -626,7 +631,7 @@ def generateFeatures(args):
 
 	idlist = []
 	
-	inputfile = "Input/input.txt"
+	inputfile = args.filename
 
 	with open(inputfile, 'r', encoding='UTF-8') as file:
 
@@ -658,7 +663,9 @@ if __name__ == '__main__':
 	parser.add_argument('--Path', type = str,default = path, help = "Path of folder\
 						where individual feature folders are present, default='./Feature'")
 	parser.add_argument('--num_neighbours', type=int, default = 20, help="Number of nearest neigbours to consider in graph construction, top K in KNN")
-
+	parser.add_argument('--filename', type = str,default = "Input/input.txt", help = "List of PDB Ids to generate features")
+	parser.add_argument('--mode', type = str,default = "predict", help = "Train a network or predict scores? 'predict' / 'train'")
+	
 	args = parser.parse_args()
 	
 	generateFeatures(args)

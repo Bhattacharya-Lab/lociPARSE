@@ -16,6 +16,9 @@ import model as ipa
 parser = argparse.ArgumentParser(description='RNA QA')
 parser.add_argument('--gpunum', type=int, default=0, metavar='N',
                 help='GPU node for inference')
+parser.add_argument('--modelpath', type=str, default="Model/QAmodel_paper.pt", metavar='N',
+                help='GPU node for inference')
+                
 
 args = parser.parse_args()
 
@@ -34,9 +37,9 @@ def main():
     model = ipa.RNAQA(in_node_nf= 6, hidden_nf=128, out_node_nf=1, in_edge_nf=149, droprate= 0.1, device=device, n_layers=4)
     
     #===================================================
-    restore_path = "Model/QAmodel.pt"
+    restore_path = args.modelpath
 
-    model.load_state_dict(torch.load(restore_path))
+    model.load_state_dict(torch.load(restore_path, map_location=device))
     print(f"Model loaded for inference = {restore_path}")
 
     model = model.to(device)

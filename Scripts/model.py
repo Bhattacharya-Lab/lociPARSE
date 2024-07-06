@@ -2,13 +2,23 @@
 Credit: PIPPack repository (https://github.com/Kuhlman-Lab/PIPPack)
 """
 
-import math
+import math, random
 import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
 from utils import get_rigid_from_three_points
+
+def seed_all(seed):
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.random.manual_seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.random.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)  
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
 
 def get_bb_frames(P: torch.Tensor, C4p: torch.Tensor, N: torch.Tensor):
     return get_rigid_from_three_points(P, C4p, N)
@@ -115,11 +125,8 @@ class IPA(nn.Module):
         
         self.node_dense = MLP(node_dim, node_dim * 4, node_dim, num_layers=2, act=act)
         
-    def _get_node_update(self, h_V, h_E, E_idx, X, mask_attend=None):
-        # Get backbone global frames from N, CA, and C
-        scaled_X = X / self.position_scale
-        bb_to_global = get_bb_frames(scaled_X[..., 0, :], scaled_X[..., 1, :], scaled_X[..., 2, :])
-        
+    def _get_node_update(self, h_V, h_E, E_idx, bb_to_global, mask_attend=None):
+
         # Generate queries, keys, and values from nodes
         q = self.linear_q(h_V) # [*, N_res, H * C]
         q = q.view(q.shape[:-1] + (self.n_heads, -1)) # [*, N_res, H, C]
@@ -193,8 +200,8 @@ class IPA(nn.Module):
         
         return s
         
-    def forward(self, h_V, h_E, E_idx, X, mask_V=None, mask_attend=None):
-        s = self._get_node_update(h_V, h_E, E_idx, X, mask_attend)
+    def forward(self, h_V, h_E, E_idx, bb_to_global, mask_V=None, mask_attend=None):
+        s = self._get_node_update(h_V, h_E, E_idx, bb_to_global, mask_attend)
         h_V = self.norm[0](h_V + self.dropout[0](s))
         node_m = self.node_dense(h_V)
         h_V = self.norm[1](h_V + self.dropout[1](node_m))
@@ -206,7 +213,7 @@ class IPA(nn.Module):
 
 
 class RNAQA(nn.Module):
-    def __init__(self, in_node_nf, hidden_nf, out_node_nf, in_edge_nf, droprate= 0.1, device='cpu', n_layers=4, k_neighbors = 20, act = "relu", n_points = 3, position_scale = 1.0):
+    def __init__(self, in_node_nf, hidden_nf, out_node_nf, in_edge_nf, droprate= 0.1, device='cpu', n_layers=4, k_neighbors = 20, act = "relu", n_points = 3, position_scale = 10.0):
         
         super().__init__()
         self.hidden_nf = hidden_nf
@@ -214,6 +221,7 @@ class RNAQA(nn.Module):
         self.n_layers = n_layers
         self.k_neighbors = k_neighbors
         self.droprate = droprate
+        self.position_scale = position_scale
         
         self.embedding_out = nn.Linear(self.hidden_nf, out_node_nf)
         
@@ -234,6 +242,8 @@ class RNAQA(nn.Module):
             
         self.to(self.device)
 
+        seed_all(1000)
+
     def forward(self, V, E, E_idx, X):
         
         # Embed nodes
@@ -244,8 +254,13 @@ class RNAQA(nn.Module):
         E = self.edge_embedding(E)
         E = self.norm_edges(E)
 
+        # Get backbone global frames from N, CA, and C
+        scaled_X = X / self.position_scale
+        
+        bb_to_global = get_bb_frames(scaled_X[..., 0, :], scaled_X[..., 1, :], scaled_X[..., 2, :])
+        
         for layer in self.mpnn_layers:
-            V = layer(V, E, E_idx, X)
+            V = layer(V, E, E_idx, bb_to_global)
             
         pred_node_emb = self.embedding_out(V)
         
