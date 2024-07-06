@@ -58,10 +58,10 @@ Inference time for a typical RNA structure (~70 nucleotides) should take a few s
 
 If you wish to train lociPARSE from scratch on our training set, please follow these steps:
 
-- Download our training dataset train.tar.gz from [here](https://zenodo.org/uploads/12669705) and place it inside Input/Dataset folder.
+- Download our training dataset Train.tar.gz from [here](https://zenodo.org/uploads/12669705) and place it inside Input/Dataset folder.
 - Extract the training dataset
   ```
-  tar -xzvf train.tar.gz
+  tar -xzvf Train.tar.gz
   ```
 -  Run the following command to train our architecture
    ```
