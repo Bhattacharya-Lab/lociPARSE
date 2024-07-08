@@ -93,14 +93,14 @@ If you want to generate our reported results in the paper from the provided pred
    python3 QA_eval.py Test30_CASP15 0
    python3 QA_eval.py ARES_benchmark2 0
    ```
-- You will find the corresponding results inside **Evaluation/Results** folder.
+- You will find the corresponding results inside **Evaluate/Results** folder.
 - To generate Supplementary Figures S1-S2, please run the following commands.
 
   ```
    cd Evaluate
    python3 draw.py
   ``` 
-- Generated figures will be inside **Evaluation/Figures** folder.
+- Generated figures will be inside **Evaluate/Figures** folder.
   
 If you want to predict the scores by lociPARSE from scratch and re-evaluate, follow these steps: 
  
@@ -126,4 +126,4 @@ If you want to predict the scores by lociPARSE from scratch and re-evaluate, fol
    chmod a+x evaluate.sh && ./evaluate.sh ARES_benchmark2 Model/QAmodel_Ares_set.pt
    ``` 
 
--  You will find the corresponding results inside **Evaluation/Results** folder.
+-  You will find the corresponding results inside **Evaluate/Results** folder.
