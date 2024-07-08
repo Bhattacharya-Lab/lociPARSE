@@ -57,7 +57,9 @@ Inference time for a typical RNA structure (~70 nucleotides) should take a few s
 If you want to train or evaluate lociPARSE, please follow these initial steps:
 
 - Download the necessary materials from [here](https://zenodo.org/uploads/12682969) and place it in the root directory(/lociPARSE)
+
 - Extract the Material.tar.gz folder
+
   ```
   tar -xvzf Materials.tar.gz --strip-components=1
   ```
