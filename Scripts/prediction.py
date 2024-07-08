@@ -22,12 +22,36 @@ parser.add_argument('--modelpath', type=str, default="Model/QAmodel_paper.pt", m
 
 args = parser.parse_args()
 
-cuda_on = torch.cuda.is_available()
+def check_cuda_compatibility():
+        
+    if not torch.cuda.is_available():
+        return 0
+    
+    torch_compiled_cuda_version = torch.version.cuda
+    
+    system_cuda_version = torch.cuda.get_arch_list()
+
+    if torch_compiled_cuda_version is None:
+        return 0
+
+    major_compiled_version = int(torch_compiled_cuda_version.split('.')[0])
+    major_system_versions = [int(v.split('_')[1]) for v in system_cuda_version]
+
+    if not major_compiled_version in major_system_versions:
+        # Print versions for debugging
+        # print(f"PyTorch compiled with CUDA version: {torch_compiled_cuda_version}")
+        # print(f"System CUDA capabilities: {system_cuda_version}")
+    
+        print("The installed PyTorch version is not compatible with the current CUDA version on the machine. Running on CPU")
+        return 0
+    
+    return 1
+
+check_cuda = check_cuda_compatibility()
 device_str="cuda:"+str(args.gpunum)
+device = torch.device(device_str if check_cuda else "cpu")
 
-device = torch.device(device_str if cuda_on else "cpu")
-
-print(device)
+print(f"Device = {device}")
 
 def main():
 
