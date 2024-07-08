@@ -13,37 +13,35 @@ Codebase for our <ins>loc</ins>ality-aware <ins>i</ins>nvariant <ins>P</ins>oint
 ![alt text](https://github.com/Bhattacharya-Lab/lociPARSE/blob/main/lociPARSE.png?raw=true)
 
 ## Installation
-
-1. Use conda virtual environment to install dependencies for lociPARSE. The following command will create a virtual environment named 'lociPARSE'.
-
 ```
-conda env create -f lociPARSE_environment.yml
+pip install lociPARSE
 ```
 
-2. Activate the virtual environment
+Or
 
 ```
-conda activate lociPARSE
+git clone https://github.com/Bhattacharya-Lab/lociPARSE.git
+cd lociPARSE
+pip install .
 ```
 
-Typical installation time on a "normal" desktop computer should take a few minutes in a 64-bit Linux system.
+Typical installation time on a "normal" desktop computer should take less than minutes in a 64-bit Linux system.
 
 ## Usage
 
 Instructions for running lociPARSE:
 
-1. Put the desired pdb(s) inside the 'Input/RNA_pdbs' folder.
+```
+from lociPARSE import lociparse
+lp = lociparse()
+pMoL = lp.score("R1108.pdb")
+```
 
-2. Put the list of PDB IDs in 'input.txt' inside 'Input' folder. See the example in the 'Input' folder.
+1. Given an RNA pdb "R1108.pdb" as input, lociPARSE outputs molecular-level lDDT (pMoL).
 
-3. Run
-   ```
-   chmod a+x lociPARSE_predict.sh && ./lociPARSE_predict.sh Model/QAmodel_lociPARSE.pt
-   ```
+2. It will also generate a "score.txt" output file in an individual folder inside 'Prediction' folder.
 
-5. The script takes the model path as an argument. It will generate features for every ID listed in Input/input.txt and store in individual folder inside 'Feature' folder. Then it will run inference and store predicted molecular-level lDDT (pMoL) and predicted nucleotide-wise lDDT (pNuL) in "score.txt" in individual folder inside 'Prediction' folder.
-
-6. First line in the output "score.txt" shows pMoL score. Each of the subsequent lines sepcify 2 columns: column-1: nucleotide index in PDB and column-2: pNuL score.
+6. First line in the output "score.txt" shows pMoL score. Each of the subsequent lines sepcify 2 columns: column-1: nucleotide index in PDB and column-2: predicted nucleotide-wise lDDT (pNuL) score.
 
 Inference time for a typical RNA structure (~70 nucleotides) should take a few seconds.
 
@@ -53,6 +51,16 @@ Inference time for a typical RNA structure (~70 nucleotides) should take a few s
 - Training set and test set of 30 independent RNAs were taken from [trRosettaRNA](https://yanglab.qd.sdu.edu.cn/trRosettaRNA/benchmark/).
 - CASP15 experimental strctures and all submiited predictions were downloaded from [CASP15](https://predictioncenter.org/download_area/CASP15/). 
 - The set of 60 non-redundant RNA targets TS60 for hyperparameter optimization was in-house curated. See (https://doi.org/10.1093/biomethods/bpae047) for more details.
+
+## Training and evaluation materials
+
+If you want to train or evaluate lociPARSE, please follow these initial steps:
+
+- Download the necessary materials from [here](https://zenodo.org/uploads/12682969) and place it in the root directory(/lociPARSE)
+- Extract the Material.tar.gz folder
+  ```
+  tar -xvzf Materials.tar.gz --strip-components=1
+  ```
 
 ## Training lociPARSE
 
@@ -69,17 +77,12 @@ If you wish to train lociPARSE from scratch on our training set, please follow t
    ```
    It will take approximately 16 hours to finish feature generation and 50 epochs of training on a single A100 gpu.
 
-- The best model saved on validation loss will be placed inside the Model folder as "QAmodel_retrained.pt". You can use this model to predict as instructed in [Usage](#usage) section.
+- The best model saved on validation loss will be placed inside the Model folder as "QAmodel_retrained.pt".
 
 ## Evaluation of lociPARSE
 
 If you want to generate our reported results in the paper from the provided predictions, follow these steps:
 
--  Extract the provided Evaluation folder which contains all the predictions and ground truths.
-   
-   ```
-   tar -xzvf Evaluation.tar.gz
-   ```
 -  To generate Tables 1-6, please run the following commands one by one.
 
    ```

@@ -1,1 +1,0 @@
-Please put the downloaded tar.gz files inside this folder.
