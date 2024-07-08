@@ -25,7 +25,7 @@ cd lociPARSE
 pip install .
 ```
 
-Typical installation time on a "normal" desktop computer should take less than minutes in a 64-bit Linux system.
+Typical installation time should take less than a minute in a 64-bit Linux system.
 
 ## Usage
 
@@ -63,6 +63,7 @@ If you want to train or evaluate lociPARSE, please follow these initial steps:
   ```
   tar -xvzf Materials.tar.gz --strip-components=1
   ```
+- Make sure if you have installed appropriate torch version compatible with the CUDA version installed in your machine for GPU training. See here for more (https://pytorch.org/get-started/locally/).
 
 ## Training lociPARSE
 
