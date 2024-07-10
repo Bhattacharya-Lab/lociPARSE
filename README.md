@@ -25,7 +25,7 @@ cd lociPARSE
 pip install .
 ```
 
-Typical installation time on a "normal" desktop computer should take less than minutes in a 64-bit Linux system.
+Typical installation time should take less than a minute in a 64-bit Linux system.
 
 ## Usage
 
@@ -66,10 +66,13 @@ Inference time for a typical RNA structure (~70 nucleotides) should take a few s
 If you want to train or evaluate lociPARSE, please follow these initial steps:
 
 - Download the necessary materials from [here](https://zenodo.org/uploads/12682969) and place it in the root directory(/lociPARSE)
+
 - Extract the Material.tar.gz folder
+
   ```
   tar -xvzf Materials.tar.gz --strip-components=1
   ```
+- Make sure if you have installed appropriate torch version compatible with the CUDA version installed in your machine for GPU training. See here for more (https://pytorch.org/get-started/locally/).
 
 ## Training lociPARSE
 
@@ -99,14 +102,14 @@ If you want to generate our reported results in the paper from the provided pred
    python3 QA_eval.py Test30_CASP15 0
    python3 QA_eval.py ARES_benchmark2 0
    ```
-- You will find the corresponding results inside **Evaluation/Results** folder.
+- You will find the corresponding results inside **Evaluate/Results** folder.
 - To generate Supplementary Figures S1-S2, please run the following commands.
 
   ```
    cd Evaluate
    python3 draw.py
   ``` 
-- Generated figures will be inside **Evaluation/Figures** folder.
+- Generated figures will be inside **Evaluate/Figures** folder.
   
 If you want to predict the scores by lociPARSE from scratch and re-evaluate, follow these steps: 
  
@@ -132,4 +135,4 @@ If you want to predict the scores by lociPARSE from scratch and re-evaluate, fol
    chmod a+x evaluate.sh && ./evaluate.sh ARES_benchmark2 Model/QAmodel_Ares_set.pt
    ``` 
 
--  You will find the corresponding results inside **Evaluation/Results** folder.
+-  You will find the corresponding results inside **Evaluate/Results** folder.
