@@ -43,7 +43,7 @@ Additional functionality
 score.pMoL.show() #Returns pMoL value
 score.pNuL.show() #Returns a list of pNuL values
 score.pNuL.show(1) #Returns the pNuL value of 1st nucleotide
-score.save("score.txt") # Saves the scores
+score.save("score.txt") #Saves the scores
 ```
 
 1. Given an RNA pdb "R1108.pdb" as input, lociPARSE predicts both molecular-level lDDT (pMoL) and nucleotide-wise lDDT (pNuL) score.
