@@ -34,14 +34,23 @@ Instructions for running lociPARSE:
 ```
 from lociPARSE import lociparse
 lp = lociparse()
-pMoL = lp.score("R1108.pdb")
+score = lp.score("R1108.pdb")
 ```
 
-1. Given an RNA pdb "R1108.pdb" as input, lociPARSE outputs molecular-level lDDT (pMoL).
+Additional functionality
 
-2. It will also generate a "score.txt" output file in an individual folder inside 'Prediction' folder.
+```
+score.pMoL.show() #Returns pMoL value
+score.pNuL.show() #Returns a list of pNuL values
+score.pNuL.show(1) #Returns the pNuL value of 1st nucleotide
+score.save("score.txt") # Saves the scores
+```
 
-6. First line in the output "score.txt" shows pMoL score. Each of the subsequent lines sepcify 2 columns: column-1: nucleotide index in PDB and column-2: predicted nucleotide-wise lDDT (pNuL) score.
+1. Given an RNA pdb "R1108.pdb" as input, lociPARSE predicts both molecular-level lDDT (pMoL) and nucleotide-wise lDDT (pNuL) score.
+
+2. Use show() function to print the pMoL or pNuL values. 
+
+3. Save the output in a provided filename of your choice("score.txt"). First line shows pMoL score. Each of the subsequent lines sepcify 2 columns: column-1: nucleotide index in PDB and column-2: predicted nucleotide-wise lDDT (pNuL) score.
 
 Inference time for a typical RNA structure (~70 nucleotides) should take a few seconds.
 

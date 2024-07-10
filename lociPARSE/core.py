@@ -4,8 +4,44 @@ from .utils import *
 
 import torch
 from torch import nn
-import os
+import os, sys
 import numpy as np
+
+class pMoL:
+    def __init__(self, pMoL):
+        self.value = float("{:.2f}".format(pMoL))
+
+    def show(self):
+        print(self.value)
+
+class pNuL:
+    def __init__(self, values):
+        
+        pNul = [float("{:.2f}".format(value)) for value in values]
+        
+        self.values = pNul
+
+    def show(self, index=None):
+        
+        if not index is None: 
+            if index <= 0 or index > len(self.values):
+                sys.exit("Index out of range")
+            else:
+                print(self.values[index-1])
+        else:
+            print(self.values)
+
+class ScoreResult:
+    def __init__(self, pMoL_value, pNuL_values):
+        self.pMoL = pMoL(pMoL_value)
+        self.pNuL = pNuL(pNuL_values)
+
+    def save(self, filename):
+        with open(filename, "w") as wfile:
+            wfile.write(str(self.pMoL.value) + "\n")
+            
+            for i in range(len(self.pNuL.values)):
+                wfile.write(str(i+1) + str(f"\t{self.pNuL.values[i]}\n"))
 
 class lociparse:
     def __init__(self, model_path=None):
@@ -89,18 +125,6 @@ class lociparse:
 
             pMoL = np.average(pNuL)
 
-        base_name = os.path.basename(pdb_file_path)
-        name, _ = os.path.splitext(base_name)
-        pred_path = f"Prediction/{name}"
-            
-        if not os.path.exists(pred_path):
-            os.makedirs(pred_path)
+        return ScoreResult(pMoL, pNuL)
+
         
-        with open(f"{pred_path}/score.txt", "w") as wfile:
-            wfile.write("{:.2f}".format(pMoL) + "\n")
-            
-            for i in range(pNuL.shape[0]):
-                wfile.write(str(i+1) + "\t{:.2f}".format(pNuL[i]) + "\n")
-
-
-        return float("{:.2f}".format(pMoL))
