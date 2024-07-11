@@ -81,7 +81,7 @@ If you want to train or evaluate lociPARSE, please follow these initial steps:
 
 If you wish to train lociPARSE from scratch on our training set, please follow these steps:
 
-- Download our training dataset Train.tar.gz from [here](https://zenodo.org/uploads/12669705) and place it inside Input/Dataset folder.
+- Download our training dataset Train.tar.gz from [here](https://zenodo.org/records/12729654) and place it inside Input/Dataset folder.
 - Extract the training dataset
   ```
   tar -xzvf Train.tar.gz
