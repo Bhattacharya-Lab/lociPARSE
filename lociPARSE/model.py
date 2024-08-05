@@ -254,7 +254,7 @@ class RNAQA(nn.Module):
         E = self.edge_embedding(E)
         E = self.norm_edges(E)
 
-        # Get backbone global frames from N, CA, and C
+        # Get backbone global frames from P, C4' and N1/9
         scaled_X = X / self.position_scale
         
         bb_to_global = get_bb_frames(scaled_X[..., 0, :], scaled_X[..., 1, :], scaled_X[..., 2, :])
