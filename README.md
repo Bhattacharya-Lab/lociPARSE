@@ -98,12 +98,11 @@ If you wish to train lociPARSE from scratch on our training set, please follow t
 
 If you want to generate our reported results in the paper from the provided predictions, follow these steps:
 
--  To generate Tables 1-6, please run the following commands one by one.
+-  To generate Tables 1-5, please run the following commands one by one.
 
    ```
    cd Evaluate
    python3 QA_eval.py Test30_CASP15 0
-   python3 QA_eval.py ARES_benchmark2 0
    ```
 - You will find the corresponding results inside **Evaluate/Results** folder.
 - To generate Supplementary Figures S1-S2, please run the following commands.
@@ -116,7 +115,7 @@ If you want to generate our reported results in the paper from the provided pred
   
 If you want to predict the scores by lociPARSE from scratch and re-evaluate, follow these steps: 
  
-- Download our test datasets Test.tar.gz and Ares_set.tar.gz from [here](https://zenodo.org/uploads/12669705) and place it inside Input/Dataset folder.
+- Download our test datasets Test.tar.gz from [here](https://zenodo.org/uploads/12669705) and place it inside Input/Dataset folder.
 
 - Extract the folders
   ```
@@ -130,12 +129,6 @@ If you want to predict the scores by lociPARSE from scratch and re-evaluate, fol
 
    ```
    chmod a+x evaluate.sh && ./evaluate.sh Test30_CASP15 Model/QAmodel_lociPARSE.pt
-   ``` 
-
--  To predict and evaluate results on ARES benchmark set-2 (Table 6), please run the following command. [This will be slow due to ~76k models in this test set]
-
-   ```
-   chmod a+x evaluate.sh && ./evaluate.sh ARES_benchmark2 Model/QAmodel_Ares_set.pt
    ``` 
 
 -  You will find the corresponding results inside **Evaluate/Results** folder.
