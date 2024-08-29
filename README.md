@@ -121,10 +121,6 @@ If you want to predict the scores by lociPARSE from scratch and re-evaluate, fol
   ```
   tar -xzvf Test.tar.gz
   ```
-  ```
-  tar -xzvf Ares_set.tar.gz
-  ```
-  
 -  To predict and evaluate results on our two test sets Test30 and CASP15 (Tables 1-5), please run the following command.
 
    ```
