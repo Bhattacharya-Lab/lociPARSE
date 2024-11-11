@@ -2,7 +2,7 @@
 
 by Sumit Tarafder and Debswapna Bhattacharya
 
-[[bioRxiv](https://www.biorxiv.org/content/10.1101/2023.11.04.565599v2)] [[pdf](https://www.biorxiv.org/content/10.1101/2023.11.04.565599v2.full.pdf)]
+published in [Journal of Chemical Information and Modeling](https://pubs.acs.org/doi/10.1021/acs.jcim.4c01621)
 
 Codebase for our <ins>loc</ins>ality-aware <ins>i</ins>nvariant <ins>P</ins>oint <ins>A</ins>ttention-based <ins>R</ins>NA <ins>S</ins>cor<ins>E</ins>r (lociPARSE).
 
